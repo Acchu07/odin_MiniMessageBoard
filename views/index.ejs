@@ -2,9 +2,13 @@
 <main>
   <% arrayOfJokes.forEach((Joke) => { %>
     <div class="Joke-Container">
-      <h3>Joke Submitted By : <%= Joke.submittedUser %></h3>
+      <h3><%= Joke.submittedUser %></h3>
       <p><%= Joke.textJoke %></p>
-      <p class="date">Submitted Date: <%= Joke.datePosted %></p>
+      <p class="date"><%= Joke.datePosted %></p>
+      <form class="special" action="/open" method="post">
+        <input type="hidden" name="locationID" value="<%=Joke.uniqueID%>">
+        <button>Open</button>
+      </form>
     </div>
   <% }) %>
 </main>

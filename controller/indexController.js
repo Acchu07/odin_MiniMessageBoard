@@ -1,7 +1,7 @@
-const arrayOfJokes = require('../data/messages')
+const {arrayJokes} = require('../data/messages')
 
 function functionIndexPage(req,res){
-    res.render('index',{arrayOfJokes})
+    res.render('index',{arrayOfJokes:arrayJokes})
 }
 
 module.exports = {functionIndexPage}

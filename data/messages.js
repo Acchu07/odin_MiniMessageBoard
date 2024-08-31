@@ -1,8 +1,13 @@
+const { format } = require('date-fns');
+
 class Jokes{
+    static counter = 0
     constructor(textJoke, submittedUser){
         this.textJoke = textJoke
         this.submittedUser = submittedUser
-        this.datePosted = new Date().toString()
+        this.datePostedPrecise = new Date()
+        this.datePosted = format(this.datePostedPrecise, "MMMM yyyy - d eeee")
+        this.uniqueID = Jokes.counter++
     }
 }
 
@@ -13,5 +18,8 @@ const secondJoke = new Jokes(`Why did the scarecrow win an award? Because he was
 
 arrayJokes.push(firstJoke,secondJoke)
 
+function createNewJokes(jokeFormObject){
+    arrayJokes.push(new Jokes(jokeFormObject.submittedJoke,jokeFormObject.userName))
+}
 
-module.exports = arrayJokes;
+module.exports = {arrayJokes,createNewJokes};
