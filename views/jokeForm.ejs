@@ -1,0 +1,13 @@
+<%- include('partials/header', { title: 'Jokes Message Board' }) %>
+<main>
+    <h1>Submit A New Joke</h1>
+    <form method="POST" action="/new">
+        <label for="userName">Joke Creator's Name</label>
+        <input type="text" id="userName" name="userName" required>
+        
+        <label for="joke">The Joke</label>
+        <textarea id="joke" name="submittedJoke" rows="30" cols="30" required></textarea>
+        <button type="submit">Submit The Joke</button>
+    </form>
+</main>
+<%- include('partials/footer') %>   

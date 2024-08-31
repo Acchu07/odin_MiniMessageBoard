@@ -1,0 +1,11 @@
+<%- include('partials/header', { title: 'Jokes Message Board' }) %>
+<main>
+  <% arrayOfJokes.forEach((Joke) => { %>
+    <div class="Joke-Container">
+      <h3>Joke Submitted By : <%= Joke.submittedUser %></h3>
+      <p><%= Joke.textJoke %></p>
+      <p class="date">Submitted Date: <%= Joke.datePosted %></p>
+    </div>
+  <% }) %>
+</main>
+<%- include('partials/footer') %>

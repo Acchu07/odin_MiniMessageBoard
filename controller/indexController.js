@@ -1,14 +1,7 @@
-const express = require('express')
-const arr = require('../data/messages')
-const router = express.Router()
+const arrayOfJokes = require('../data/messages')
 
 function functionIndexPage(req,res){
-    console.log(arr[0])
+    res.render('index',{arrayOfJokes})
 }
 
-function createNewMessage(req,re){
-    console.log(arr[1])
-}
-
-
-module.exports = {functionIndexPage, createNewMessage}
+module.exports = {functionIndexPage}
