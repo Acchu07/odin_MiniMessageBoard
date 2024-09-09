@@ -7,6 +7,7 @@
     "pg": "^8.12.0"
   },
   "scripts": {
-    "start": "node app.js --port=3000"
+    "start": "node app.js --port=3000",
+    "populateDB": "node data/populateDB"
   }
 }

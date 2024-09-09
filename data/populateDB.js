@@ -20,7 +20,7 @@ VALUES
 
 async function runScriptPopulateDatabase(){
     const singleUser = new Client({
-        connectionString: process.env.connectionString
+        connectionString: process.env.DATABASE_URL || process.env.connectionString
     })
     
     try {
