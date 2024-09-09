@@ -1,25 +1,26 @@
 const { format } = require('date-fns');
+const poolUser = require("./pool");
+const pool = require('./pool');
 
-class Jokes{
-    static counter = 0
-    constructor(textJoke, submittedUser){
-        this.textJoke = textJoke
-        this.submittedUser = submittedUser
-        this.datePostedPrecise = new Date()
-        this.datePosted = format(this.datePostedPrecise, "MMMM yyyy - d eeee")
-        this.uniqueID = Jokes.counter++
+async function createNewJokes(jokeFormObject){
+    const queryObject = {
+        text: `INSERT INTO jokes (JokeAuthor, TheJoke, Date) VALUES($1, $2, $3)`,
+        values: [jokeFormObject.userName,jokeFormObject.submittedJoke, new Date()]
+    }
+    await poolUser.query(queryObject)
+}
+
+async function getAllJokesFromDB(){
+    const queryObject = {
+        text:'SELECT * FROM jokes',
+        rowMode: 'array'
+    }
+    try {
+        const {rows} = await poolUser.query(queryObject);
+        return rows;
+    } catch (error) {
+        console.log(error)
     }
 }
 
-const arrayJokes = []
-
-const firstJoke = new Jokes(`Parallel lines have so much in common. It’s a shame they’ll never meet.`,'Lena Foster');
-const secondJoke = new Jokes(`Why did the scarecrow win an award? Because he was outstanding in his field!`, `Melaine Coaster`)
-
-arrayJokes.push(firstJoke,secondJoke)
-
-function createNewJokes(jokeFormObject){
-    arrayJokes.push(new Jokes(jokeFormObject.submittedJoke,jokeFormObject.userName))
-}
-
-module.exports = {arrayJokes,createNewJokes};
+module.exports = {getAllJokesFromDB,createNewJokes};

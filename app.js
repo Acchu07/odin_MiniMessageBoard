@@ -4,7 +4,9 @@ const newRouter = require('./routes/newRouter')
 const openRouter = require('./routes/openRouter')
 const path = require('path');
 const app = express()
-const port = process.env.PORT || 3000
+require('dotenv').config()
+
+const port = process.env.PORT
 const assetsPath = path.join(__dirname, "public");
 
 app.set('view engine', 'ejs')

@@ -4,8 +4,8 @@ function createNewMessage(req,res){
     res.render('jokeForm')
 }
 
-function postNewMessage(req,res){
-    createNewJokes(req.body)
+async function postNewMessage(req,res){
+    await createNewJokes(req.body)
     res.redirect('/')
 }
 
