@@ -1,7 +1,8 @@
-const {arrayJokes} = require('../data/messages')
+const {getJokeByIDFromDB} = require('../data/messages')
 
-function openMentionedMessage(req,res){
-    res.render('open',{Joke:arrayJokes[req.body.locationID]})
+async function openMentionedMessage(req,res){
+    const selectedJoke = await getJokeByIDFromDB(req.body.locationID)
+    res.render('open',{Joke:selectedJoke})
 }
 
 

@@ -23,4 +23,18 @@ async function getAllJokesFromDB(){
     }
 }
 
-module.exports = {getAllJokesFromDB,createNewJokes};
+async function getJokeByIDFromDB(jokeID){
+    const queryObject = {
+        text:'SELECT * FROM jokes WHERE ID = $1',
+        values: [jokeID],
+        rowMode: 'array'
+    }
+    try {
+        const {rows} = await pool.query(queryObject);
+        return rows;    
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+module.exports = {getAllJokesFromDB,createNewJokes,getJokeByIDFromDB};

@@ -6,7 +6,7 @@
       <p><%= Joke[2] %></p>
       <p class="date"><%= Joke[3] %></p>
       <form class="special" action="/open" method="post">
-        <input type="hidden" name="locationID" value="<%=Joke.uniqueID%>">
+        <input type="hidden" name="locationID" value="<%=Joke[0]%>">
         <button>Open</button>
       </form>
     </div>
